@@ -45,7 +45,7 @@ Todas as configurações do ambiente ficam dentro da pasta ```./.docker``` inclu
 
 O docker-compose esta configurado para subir tres containers:
 
-|CONTAINER    |DESCRIÇÃO                               |PORTS                                    |
+|CONTAINER    |DESCRIÇÃO                               |PORTAS                                    |
 |-------------|----------------------------------------|-----------------------------------------|
 |app_php      |Execução do php e suas dependências     |0.0.0.0:8080->8080/tcp, :::8080->8080/tcp|
 |phpmyadmin   |Utilitário para administração do banco  |0.0.0.0:8081->80/tcp, :::8081->80/tcp    |
@@ -53,9 +53,11 @@ O docker-compose esta configurado para subir tres containers:
 
 *Comportamento:*
 - app_php
-  - Os arquivo/diretório da raiz deste projeto são espelhados no container através do diretório ```/var/www``` 
+  - Os arquivo/diretório da raiz deste projeto são espelhados no container através do diretório ```/var/www```
+  - Veja [aqui](#alterar-privilegio-do-container-app-) como ajustar o permissionamento.   
 - db_mysql8
-  - Os dados deste container NÃO estão sendo persistido dentro host
+  - Os dados deste container NÃO estão sendo persistido dentro host.
+  - Veja [aqui](#leitura-adicional-) alguns links uteis que possa te ajudar.  
 
 Inclui todas as dependências necessárias para o desenvolvimento diário de PHP com ferramentas comuns:
 
@@ -77,7 +79,7 @@ Inclui todas as dependências necessárias para o desenvolvimento diário de PHP
 
 ## Prerequisites ⚠️
 
-Primeiro, você precisará instalar o docker e docker-compose).
+Primeiro, você precisará instalar o docker e docker-compose ;).
 
 ---
 
@@ -97,7 +99,7 @@ docker-compose -f "docker-compose.yml" down
 ---
 
 ## Alterar privilegio do container app 😀
-Para trabalhar com o compartilhamento do volume entre container e host foi criado um usuário dentro do container com o mesmo UID do host. 
+Para trabalhar com o compartilhamento do volume entre host e container um usuário é criado dentro do container *app_php* com o mesmo UID do host. 
 
 ```bash
   # Atualização do UID
