@@ -54,7 +54,7 @@ O docker-compose esta configurado para subir tres containers:
 *Comportamento:*
 - app_php
   - Os arquivo/diretório da raiz deste projeto são espelhados no container através do diretório ```/var/www```
-  - Veja [aqui](#alterar-privilegio-do-container-app-) como ajustar o permissionamento.   
+  - Veja [aqui](#alterar-privilegio-do-container-app_php-) como ajustar o permissionamento.   
 - db_mysql8
   - Os dados deste container NÃO estão sendo persistido dentro host.
   - Acesso mysql  
@@ -84,7 +84,7 @@ Inclui todas as dependências necessárias para o desenvolvimento diário de PHP
 
 ## Prerequisites ⚠️
 
-Primeiro, você precisará instalar o docker e docker-compose ;).
+Primeiro, você precisará instalar o [docker](https://docs.docker.com/engine/install/) e [docker-compose](https://docs.docker.com/compose/install/) ;).
 
 ---
 
