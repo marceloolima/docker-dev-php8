@@ -45,7 +45,7 @@ Todas as configurações do ambiente ficam dentro da pasta ```./.docker``` inclu
 
 O docker-compose esta configurado para subir tres containers:
 
-|CONTAINER    |DESCRIÇÃO                               |PORTAS                                    |
+|CONTAINER    |DESCRIÇÃO                               |PORTAS                                   |
 |-------------|----------------------------------------|-----------------------------------------|
 |app_php      |Execução do php e suas dependências     |0.0.0.0:8080->8080/tcp, :::8080->8080/tcp|
 |phpmyadmin   |Utilitário para administração do banco  |0.0.0.0:8081->80/tcp, :::8081->80/tcp    |
@@ -57,6 +57,11 @@ O docker-compose esta configurado para subir tres containers:
   - Veja [aqui](#alterar-privilegio-do-container-app-) como ajustar o permissionamento.   
 - db_mysql8
   - Os dados deste container NÃO estão sendo persistido dentro host.
+  - Acesso mysql  
+    - Senha usuário root: app_root
+    - Banco de dados: app
+    - Usuário: app
+    - Senha: app
   - Veja [aqui](#leitura-adicional-) alguns links uteis que possa te ajudar.  
 
 Inclui todas as dependências necessárias para o desenvolvimento diário de PHP com ferramentas comuns:
@@ -95,10 +100,14 @@ docker-compose -f "docker-compose.yml" up -d --build
 # Destruir ambiente
 docker-compose -f "docker-compose.yml" down 
 ```
+|Aplicação|Link de Acesso|
+|---|---|
+|php 8|http://localhost:8080/|
+|phpmyadmin|http://localhost:8081/|
 
 ---
 
-## Alterar privilegio do container app 😀
+## Alterar privilegio do container app_php 😀
 Para trabalhar com o compartilhamento do volume entre host e container um usuário é criado dentro do container *app_php* com o mesmo UID do host. 
 
 ```bash
@@ -121,8 +130,8 @@ O Docker Engine deve estar em execução e os comandos devem ser executados na r
 | `docker-compose stop`  | Parar todos os contêineres (mantém todas as alterações de configuração que você fez nos contêineres) |
 | `docker-compose up -d --build --no-cache` | Recrie todos os contêineres do zero |
 | `docker-compose down`  | Derrube todos os contêineres |
-| `docker-compose run --rm app composer install` | roda o comando composer install dentro da raiz do projeto |
-| `docker-compose logs app` | Mostrar todos os logs do container app |
+| `docker-compose run --rm app_php composer install` | roda o comando composer install dentro da raiz do projeto |
+| `docker-compose logs app_php` | Mostrar todos os logs do container app |
 | `docker-compose ps` | Mostrar quais contêineres estão em execução |
 
 ## Leitura adicional 📚
